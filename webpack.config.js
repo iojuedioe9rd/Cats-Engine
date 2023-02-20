@@ -11,7 +11,7 @@ const isWatch = process.argv.find(arg => arg.includes("-w")) ? true : false
 
 module.exports = {
   externals: [],
-  mode: "development",
+  
   devtool: "inline-source-map",
   entry: {
     main: "./src/app.ts",
@@ -29,6 +29,21 @@ module.exports = {
       { 
         test: /\.tsx?$/,
         loader: "ts-loader"
+      },
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+            // Creates `style` nodes from JS strings
+            MiniCssExtractPlugin.loader,
+            // Translates CSS into CommonJS
+            "css-loader",
+            // Compiles Sass to CSS
+            "sass-loader",
+          ],
       }
     ]
   },
