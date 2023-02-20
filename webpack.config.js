@@ -3,6 +3,7 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const isWatch = process.argv.find(arg => arg.includes("-w")) ? true : false
 
@@ -53,6 +54,7 @@ module.exports = {
     new HtmlWebpackPlugin({
     template: path.resolve(__dirname, './public/index.html'),
     filename: "index.html"
-  })
+  }),
+  new MiniCssExtractPlugin()
   ],
 };
